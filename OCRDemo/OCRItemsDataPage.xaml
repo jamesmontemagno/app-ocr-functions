@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<p:ListDataPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:p="clr-namespace:Xamarin.Forms.Pages;assembly=Xamarin.Forms.Pages"
+             xmlns:azure="clr-namespace:Xamarin.Forms.Pages.Azure;assembly=Xamarin.Forms.Pages.Azure"
+             x:Class="DataPagesDemo.OCRItemsDataPage"
+             Title="Items" StyleClass="Events">
+  <p:ListDataPage.DataSource>
+  <azure:AzureDataSource>
+    <azure:AzureDataSource.Source>
+      <azure:AzureEasyTableSource 
+        TableName="ocritem"
+        Uri="http://YOUR-URL-HERE.azurewebsites.net" />
+    </azure:AzureDataSource.Source>
+  </azure:AzureDataSource>
+  </p:ListDataPage.DataSource>
+  
+  <p:ListDataPage.DefaultItemTemplate>
+	    <DataTemplate>
+	        <ViewCell>
+            <p:CardView
+              Margin="10"
+                Text="Total Amount from OCR:"
+                Detail="{p:DataSourceBinding Total}"
+                ImageSource="{p:DataSourceBinding Url}"
+                DataSource="{Binding Value}"
+                HeightRequest="250"/>
+	        </ViewCell>
+	    </DataTemplate>
+	</p:ListDataPage.DefaultItemTemplate>
+
+  <p:ListDataPage.DetailTemplate>
+    <DataTemplate>
+      <ContentPage Title="Details">
+        <ScrollView>
+          <StackLayout Padding="10" Spacing="10">
+            <p:CardView
+                    Text="Total Amount from OCR:"
+                    Detail="{p:DataSourceBinding  Total}"
+                    ImageSource="{p:DataSourceBinding  Url}"
+                    DataSource="{Binding Value}"/>
+            <Frame BackgroundColor="White">
+              <Frame.HasShadow>
+                <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true"/>
+              </Frame.HasShadow>
+              <StackLayout Padding="0" Spacing="10">
+              <p:ListItemControl
+                      Title="Date:"
+                      Detail="{p:DataSourceBinding createdAt}"
+                      DataSource="{Binding Value}"/>
+              <p:ListItemControl
+                      Title="Full OCR:"
+                      Detail="{p:DataSourceBinding Text}"
+                      DataSource="{Binding Value}"/>
+              </StackLayout>
+            </Frame>
+          </StackLayout>
+      </ScrollView>
+      </ContentPage>
+    </DataTemplate>
+  </p:ListDataPage.DetailTemplate>
+</p:ListDataPage>
