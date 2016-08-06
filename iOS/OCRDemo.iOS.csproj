@@ -155,7 +155,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataPagesDemo\OCRDemo.csproj">
+    <ProjectReference Include="..\OCRDemo\OCRDemo.csproj">
       <Project>{C8DB796F-D98F-42E0-897B-3FDEE15C83F3}</Project>
       <Name>OCRDemo</Name>
     </ProjectReference>
